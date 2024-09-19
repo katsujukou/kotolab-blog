@@ -1,0 +1,17 @@
+package:
+  name: api
+  dependencies:
+    - codec-argonaut
+    - fmt
+    - httpurple
+    - httpurple-aws-lambda
+    - json
+    - kotolab-blog
+    - kotolab-blog-foreign
+    - routing-duplex
+    - run
+  test:
+    main: Test.Main
+    dependencies:
+      - spec
+      - spec-node

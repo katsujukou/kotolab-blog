@@ -1,0 +1,8 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@shikijs/markdown-it": "^1.18.0",
+    "markdown-it": "^14.1.0",
+    "shiki": "^1.18.0"
+  }
+}

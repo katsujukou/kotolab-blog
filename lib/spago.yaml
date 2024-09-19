@@ -1,0 +1,4 @@
+package:
+  name: kotolab-blog
+  dependencies:
+    - codec-argonaut

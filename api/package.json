@@ -1,0 +1,9 @@
+{
+  "type": "module",
+  "scripts": {
+    "compile": "cd .. && spago build -p api",
+    "optimize": "cd .. && purs-backend-es build",
+    "pack": "cd .. && purs-backend-es bundle-module --no-build -p node -y -m Kotolab.Blog.API.V1 -t api/dist/app.js",
+    "build": "npm run compile && npm run optimize && npm run pack && echo '{ \"type\": \"module\" }' > ./dist/package.json"
+  }
+}

@@ -1,0 +1,4 @@
+package:
+  name: kotolab-blog-foreign
+  dependencies:
+    - aff-promise
