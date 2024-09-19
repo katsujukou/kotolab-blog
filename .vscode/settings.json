@@ -1,5 +1,8 @@
 {
   "editor.tabSize": 2,
   "editor.formatOnSave": true,
-  "purescript.formatter": "purs-tidy"
+  "purescript.formatter": "purs-tidy",
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
 }
