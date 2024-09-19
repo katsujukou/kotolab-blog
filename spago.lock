@@ -291,11 +291,17 @@ workspace:
       path: web
       core:
         dependencies:
+          - affjax
+          - affjax-web
           - halogen
           - halogen-helix
           - halogen-hooks
         build_plan:
           - aff
+          - affjax
+          - affjax-web
+          - argonaut-core
+          - arraybuffer-types
           - arrays
           - avar
           - bifunctors
@@ -316,6 +322,7 @@ workspace:
           - foreign
           - foreign-object
           - fork
+          - form-urlencoded
           - free
           - freeap
           - functions
@@ -326,11 +333,13 @@ workspace:
           - halogen-hooks
           - halogen-subscriptions
           - halogen-vdom
+          - http-methods
           - identity
           - integers
           - invariant
           - js-date
           - js-promise
+          - js-uri
           - lazy
           - lists
           - maybe
@@ -367,6 +376,7 @@ workspace:
           - web-storage
           - web-touchevents
           - web-uievents
+          - web-xhr
       test:
         dependencies: []
         build_plan: []
@@ -910,6 +920,33 @@ packages:
     dependencies:
       - aff
       - foreign
+  affjax:
+    type: registry
+    version: 13.0.0
+    integrity: sha256-blYfaoW4FYIrIdvmT4sB7nN7BathFaEfZuiVLPmHJOo=
+    dependencies:
+      - aff
+      - argonaut-core
+      - arraybuffer-types
+      - foreign
+      - form-urlencoded
+      - http-methods
+      - integers
+      - media-types
+      - nullable
+      - refs
+      - unsafe-coerce
+      - web-xhr
+  affjax-web:
+    type: registry
+    version: 1.0.0
+    integrity: sha256-n/yJUk1wMxMN7fJ2TJ+fELgieomy29N617yOshAnrc0=
+    dependencies:
+      - aff
+      - affjax
+      - either
+      - maybe
+      - prelude
   ansi:
     type: registry
     version: 7.0.0
@@ -1230,6 +1267,18 @@ packages:
     integrity: sha256-X7u0SuCvFbLbzuNEKLBNuWjmcroqMqit4xEzpQwAP7E=
     dependencies:
       - aff
+  form-urlencoded:
+    type: registry
+    version: 7.0.0
+    integrity: sha256-WUzk8DTjrbPVHKZ5w7XpPBO6ci6xFhvYguHp6RvX+18=
+    dependencies:
+      - foldable-traversable
+      - js-uri
+      - maybe
+      - newtype
+      - prelude
+      - strings
+      - tuples
   free:
     type: registry
     version: 7.1.0
@@ -1405,6 +1454,14 @@ packages:
       - record
       - tuples
       - variant
+  http-methods:
+    type: registry
+    version: 6.0.0
+    integrity: sha256-Orr7rbDGcp7qoqmUMXPRMjBx+C4jqOQcFe9+gE3nMgU=
+    dependencies:
+      - either
+      - prelude
+      - strings
   httpurple:
     type: registry
     version: 4.0.0
@@ -2319,4 +2376,15 @@ packages:
     version: 5.0.0
     integrity: sha256-5I+ut9JYno3wowti3vJGs1afKCm1ucppKuy+zhuSyss=
     dependencies:
+      - web-html
+  web-xhr:
+    type: registry
+    version: 5.0.1
+    integrity: sha256-3dbIPVG66S+hPrgEVnpD78hrGjE7qlBbsReWOz89Ios=
+    dependencies:
+      - arraybuffer-types
+      - datetime
+      - http-methods
+      - web-dom
+      - web-file
       - web-html
