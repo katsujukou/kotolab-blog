@@ -15,3 +15,7 @@ variable "github_repo" {
 variable "webapp_s3_bucket_arn" {
   type = string
 }
+
+variable "webapp_cloudfront_distribution_arn" {
+  type = string
+}

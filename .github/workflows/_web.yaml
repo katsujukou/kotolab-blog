@@ -45,4 +45,9 @@ jobs:
   
       - name: Deploy to S3
         run: |
-          aws s3 sync ./web/dist s3://${{ vars.S3_BUCKET_NAME }} --delete
+          aws s3 sync ./web/dist s3://${{ vars.S3_BUCKET_NAME }} --delete \
+            && aws cloudfront create-invalidation \
+                --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }} \
+                --paths "/*"
+
+          

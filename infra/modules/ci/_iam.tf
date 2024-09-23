@@ -50,6 +50,13 @@ resource "aws_iam_role_policy" "allow_s3_limited_access" {
           "${var.webapp_s3_bucket_arn}/*"
         ]
         Action = "s3:*"
+      },
+      {
+        Effect = "Allow"
+        Resource = "${var.webapp_cloudfront_distribution_arn}",
+        Action = [
+          "cloudfront:CreateInvalidation"
+        ]
       }
     ]
   })
