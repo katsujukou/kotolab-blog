@@ -6,10 +6,11 @@ on:
 permissions:
   id-token: write # required!
   contents: read
-  
+
 jobs:
-  setup-nix:
+  ci-web:
     runs-on: ubuntu-latest
+    environment: "prod"     # Todo: adjust for multi environments
     steps:
       # Setup Nix envirionment
       - uses: actions/checkout@v3
@@ -36,12 +37,12 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }}
-          aws-region: ${{ vars.AWS_DEFAULT_REGION }}
+          role-to-assume: ${{ vars.AWS_IAM_ROLE_ARN }}
+          aws-region: "ap-northeast-1"
 
       - name: Build for release
         run: cd web && pnpm install && pnpm release
   
       - name: Deploy to S3
         run: |
-          aws s3 sync ./web/dist s3://${{ vars.PROD_S3_BUCKET_NAME }} --delete
+          aws s3 sync ./web/dist s3://${{ vars.S3_BUCKET_NAME }} --delete
