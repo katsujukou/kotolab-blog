@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    paths:
+      - '**'
+      - '!.vscode/'
+      - '!README.md'
+  pull_request:
+    paths:
+      - '**'
+      - '!.vscode/'
+      - '!README.md'
+
+jobs:
+  setup-nix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v23
+        with:
+          nix_path: nixpkgs=channel:nixos-24.05
+      - uses: nicknovitski/nix-develop@v1
+      - uses: cachix/cachix-action@v10
+        with:
+          name: katsujukou-github
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      - run: nix develop --extra-experimental-features "nix-command flakes"
+
+  lib:
+    name: Build, Test & Check lib
+    runs-on: ubuntu-latest
+    needs: setup-nix
+    if: |
+      github.event_name == 'pull_request' ||
+      (github.event_name == 'push' && github.event.head_commit.modified && (
+        contains(github.event.head_commit.modified, '.github/') ||
+        contains(github.event.head_commit.modified, 'lib/') ||
+        contains(github.event.head_commit.modified, 'foreign/') ||
+        contains(github.event.head_commit.modified, 'pnpm-workspace.yaml') ||
+        contains(github.event.head_commit.modified, 'pnpm-lock.yaml') ||
+        contains(github.event.head_commit.modified, 'flake.lock') ||
+        contains(github.event.head_commit.modified, 'spago.lock') 
+      ))
+    steps:
+      - name: Build
+        run: spago build -p kotolab-blog-lib && spago build -p kotolab-blog-foreign
+      - name: Test
+        run: spago test -p kotolab-blog-lib && spago test -p kotolab-blog-foreign
+      - name: Check 
+        run: purs_tidy check lib foreign
+
+  web:
+    name: Build, Test, Check & Deploy Web 
+    runs-on: ubuntu-latest
+    needs: setup-nix
+    if: |
+      github.event_name == 'pull_request' ||
+      (github.event_name == 'push' && github.event.head_commit.modified && (
+        contains(github.event.head_commit.modified, '.github/') ||
+        contains(github.event.head_commit.modified, 'web/') ||
+        contains(github.event.head_commit.modified, 'lib/') ||
+        contains(github.event.head_commit.modified, 'foreign/') ||
+        contains(github.event.head_commit.modified, 'pnpm-workspace.yaml') ||
+        contains(github.event.head_commit.modified, 'pnpm-lock.yaml') ||
+        contains(github.event.head_commit.modified, 'flake.lock') ||
+        contains(github.event.head_commit.modified, 'spago.lock')
+      ))
+    steps:
+      - name: Build
+        run: spago build -p web
+
+      - name: Run tests
+        run:  spago test -p web
+
+      - name: Check format
+        run: purs-tidy check web
+
+      - name: deploy
+        run: cd web && pnpm install && pnpm release
+        
