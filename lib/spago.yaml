@@ -1,4 +1,9 @@
 package:
-  name: kotolab-blog
+  name: kotolab-blog-lib
   dependencies:
     - codec-argonaut
+  test:
+    main: Test.Kotolab.Blog.Main
+    dependencies:
+      - spec
+      - spec-node

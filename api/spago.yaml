@@ -6,7 +6,7 @@ package:
     - httpurple
     - httpurple-aws-lambda
     - json
-    - kotolab-blog
+    - kotolab-blog-lib
     - kotolab-blog-foreign
     - routing-duplex
     - run

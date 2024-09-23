@@ -6,3 +6,4 @@ package:
     - halogen
     - halogen-helix
     - halogen-hooks
+    - kotolab-blog-lib

@@ -9,8 +9,8 @@ workspace:
           - httpurple
           - httpurple-aws-lambda
           - json
-          - kotolab-blog
           - kotolab-blog-foreign
+          - kotolab-blog-lib
           - routing-duplex
           - run
         build_plan:
@@ -54,8 +54,8 @@ workspace:
           - js-uri
           - json
           - justifill
-          - kotolab-blog
           - kotolab-blog-foreign
+          - kotolab-blog-lib
           - lazy
           - lcg
           - lists
@@ -181,59 +181,6 @@ workspace:
           - typelevel-prelude
           - unfoldable
           - unsafe-coerce
-    kotolab-blog:
-      path: lib
-      core:
-        dependencies:
-          - codec-argonaut
-        build_plan:
-          - argonaut-core
-          - arrays
-          - bifunctors
-          - codec
-          - codec-argonaut
-          - const
-          - contravariant
-          - control
-          - distributive
-          - effect
-          - either
-          - enums
-          - exists
-          - foldable-traversable
-          - foreign-object
-          - functions
-          - functors
-          - gen
-          - identity
-          - integers
-          - invariant
-          - lazy
-          - lists
-          - maybe
-          - newtype
-          - nonempty
-          - numbers
-          - ordered-collections
-          - orders
-          - partial
-          - prelude
-          - profunctor
-          - record
-          - refs
-          - safe-coerce
-          - st
-          - strings
-          - tailrec
-          - tuples
-          - type-equality
-          - typelevel-prelude
-          - unfoldable
-          - unsafe-coerce
-          - variant
-      test:
-        dependencies: []
-        build_plan: []
     kotolab-blog-foreign:
       path: foreign
       core:
@@ -287,6 +234,133 @@ workspace:
       test:
         dependencies: []
         build_plan: []
+    kotolab-blog-lib:
+      path: lib
+      core:
+        dependencies:
+          - codec-argonaut
+        build_plan:
+          - argonaut-core
+          - arrays
+          - bifunctors
+          - codec
+          - codec-argonaut
+          - const
+          - contravariant
+          - control
+          - distributive
+          - effect
+          - either
+          - enums
+          - exists
+          - foldable-traversable
+          - foreign-object
+          - functions
+          - functors
+          - gen
+          - identity
+          - integers
+          - invariant
+          - lazy
+          - lists
+          - maybe
+          - newtype
+          - nonempty
+          - numbers
+          - ordered-collections
+          - orders
+          - partial
+          - prelude
+          - profunctor
+          - record
+          - refs
+          - safe-coerce
+          - st
+          - strings
+          - tailrec
+          - tuples
+          - type-equality
+          - typelevel-prelude
+          - unfoldable
+          - unsafe-coerce
+          - variant
+      test:
+        dependencies:
+          - spec
+          - spec-node
+        build_plan:
+          - aff
+          - ansi
+          - argonaut-codecs
+          - argonaut-core
+          - arraybuffer-types
+          - arrays
+          - avar
+          - bifunctors
+          - catenable-lists
+          - console
+          - const
+          - contravariant
+          - control
+          - datetime
+          - distributive
+          - effect
+          - either
+          - enums
+          - exceptions
+          - exists
+          - exitcodes
+          - foldable-traversable
+          - foreign
+          - foreign-object
+          - fork
+          - free
+          - functions
+          - functors
+          - gen
+          - identity
+          - integers
+          - invariant
+          - js-date
+          - lazy
+          - lists
+          - maybe
+          - mmorph
+          - newtype
+          - node-buffer
+          - node-event-emitter
+          - node-fs
+          - node-path
+          - node-process
+          - node-streams
+          - nonempty
+          - now
+          - nullable
+          - numbers
+          - open-memoize
+          - optparse
+          - ordered-collections
+          - orders
+          - parallel
+          - partial
+          - pipes
+          - posix-types
+          - prelude
+          - profunctor
+          - record
+          - refs
+          - safe-coerce
+          - spec
+          - spec-node
+          - st
+          - strings
+          - tailrec
+          - transformers
+          - tuples
+          - type-equality
+          - typelevel-prelude
+          - unfoldable
+          - unsafe-coerce
     web:
       path: web
       core:
@@ -296,6 +370,7 @@ workspace:
           - halogen
           - halogen-helix
           - halogen-hooks
+          - kotolab-blog-lib
         build_plan:
           - aff
           - affjax
@@ -306,6 +381,8 @@ workspace:
           - avar
           - bifunctors
           - catenable-lists
+          - codec
+          - codec-argonaut
           - console
           - const
           - contravariant
@@ -340,6 +417,7 @@ workspace:
           - js-date
           - js-promise
           - js-uri
+          - kotolab-blog-lib
           - lazy
           - lists
           - maybe
@@ -355,6 +433,7 @@ workspace:
           - partial
           - prelude
           - profunctor
+          - record
           - refs
           - safe-coerce
           - st
@@ -367,6 +446,7 @@ workspace:
           - unfoldable
           - unsafe-coerce
           - unsafe-reference
+          - variant
           - web-clipboard
           - web-dom
           - web-events
