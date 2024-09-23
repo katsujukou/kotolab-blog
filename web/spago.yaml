@@ -6,6 +6,7 @@ package:
     - halogen
     - halogen-helix
     - halogen-hooks
+    - kotolab-blog-foreign
     - kotolab-blog-lib
   test:
     main: Test.E2E.Kotolab.Blog.Web
