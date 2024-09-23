@@ -25,4 +25,4 @@ jobs:
       - name: Test
         run: spago test -p kotolab-blog-lib && spago test -p kotolab-blog-foreign
       - name: Check 
-        run: purs_tidy check lib foreign
+        run: purs-tidy check lib foreign
