@@ -7,3 +7,8 @@ package:
     - halogen-helix
     - halogen-hooks
     - kotolab-blog-lib
+  test:
+    main: Test.E2E.Kotolab.Blog.Web
+    dependencies:
+      - spec
+      - spec-node
