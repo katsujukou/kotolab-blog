@@ -27,7 +27,6 @@
               purs-backend-es
               nodejs_20
               pnpm
-              aws-sam-cli
             ]; 
           };
         }
