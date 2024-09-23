@@ -46,8 +46,8 @@ make = Hooks.component \_ _ -> Hooks.do
           ]
           [ HH.div
               [ HP.class_ $ ClassName $
-                  "h-[300px] w-[100%] absolute top-[-136px] opacity-80 "
-                    <> "md:bg-80% bg-180%"
+                  "h-[300px] w-[100%] absolute opacity-80 "
+                    <> "sm:top-[-138px] sm:bg-60% bg-140% top-[-143px]"
               , HP.style $ inlineStyle
                   [ "background-image" /\ url assetUrls.laceOrnament02
                   , "background-position" /\ "0"

@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {},
     backgroundSize: {
-      '60%': '60%',
-      '180%': '180%'
+      '140%': '140%',
+      '60%': '60%'
     },
     fontFamily: {
       yomogi: [
