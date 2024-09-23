@@ -29,6 +29,15 @@ jobs:
       - name: Check format
         run: purs-tidy check web
 
-      - name: deploy
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_DEFAULT_REGION }}
+
+      - name: Build for release
         run: cd web && pnpm install && pnpm release
-        
+  
+      - name: Deploy to S3
+        run: |
+          aws s3 sync ./web/dist s3://${{ vars.PROD_S3_BUCKET_NAME }} --delete
