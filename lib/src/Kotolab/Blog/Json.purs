@@ -12,9 +12,5 @@ import Data.Either (Either)
 stringify :: forall a. CA.JsonCodec a -> a -> String
 stringify codec = AC.stringify <<< C.encode codec
 
-parse
-  :: forall a
-     . CA.JsonCodec a
-  -> String
-  -> Either String a
+parse :: forall a. CA.JsonCodec a -> String -> Either String a
 parse codec = jsonParser >=> (C.decode codec >>> lmap CA.printJsonDecodeError)
