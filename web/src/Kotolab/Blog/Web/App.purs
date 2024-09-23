@@ -5,13 +5,12 @@ import Prelude
 import Data.Maybe (Maybe(..))
 import Data.Tuple.Nested ((/\))
 import Effect.Class (class MonadEffect)
-import Fmt as Fmt
 import Halogen (ClassName(..))
 import Halogen as H
 import Halogen.HTML as HH
 import Halogen.HTML.Properties as HP
 import Halogen.Hooks as Hooks
-import Kotolab.Blog.Web.Asset (assetUrls, src, url)
+import Kotolab.Blog.Web.Asset (assetUrls, url)
 import Kotolab.Blog.Web.Component.HeaderMenu as HeaderMenu
 import Kotolab.Blog.Web.Hooks.UseApp (useApp)
 import Kotolab.Blog.Web.Route as Route
@@ -19,6 +18,7 @@ import Kotolab.Blog.Web.Style (inlineStyle)
 import Kotolab.Blog.Web.Views.ArticleView as ArticleView
 import Kotolab.Blog.Web.Views.EditArticleView as EditArticleView
 import Kotolab.Blog.Web.Views.HomeView as HomeView
+import Kotolab.Blog.Web.Views.NewArticleView as NewArticleView
 import Type.Proxy (Proxy(..))
 
 make :: forall q i o m. MonadEffect m => H.Component q i o m
@@ -47,7 +47,7 @@ make = Hooks.component \_ _ -> Hooks.do
           [ HH.div
               [ HP.class_ $ ClassName $
                   "h-[300px] w-[100%] absolute opacity-80 "
-                    <> "sm:top-[-138px] sm:bg-60% bg-140% top-[-143px]"
+                    <> "sm:top-[-130px] sm:bg-60% bg-140% top-[-143px]"
               , HP.style $ inlineStyle
                   [ "background-image" /\ url assetUrls.laceOrnament02
                   , "background-position" /\ "0"
@@ -55,7 +55,7 @@ make = Hooks.component \_ _ -> Hooks.do
                   ]
               ]
               []
-          , HH.div [ HP.class_ $ ClassName "static -z-50" ]
+          , HH.div [ HP.class_ $ ClassName "static -z-50 pt-[48px]" ]
               [ renderRouterView currentRoute
               ]
           ]
@@ -65,4 +65,5 @@ make = Hooks.component \_ _ -> Hooks.do
   renderRouterView (Just route) = case route of
     Route.Home -> HH.slot_ (Proxy @"main-view") unit HomeView.make {}
     Route.Articles articleId -> HH.slot_ (Proxy @"article-view") unit ArticleView.make { articleId }
+    Route.NewArticle -> HH.slot_ (Proxy @"new-article-view") unit NewArticleView.make {}
     Route.EditArticle articleId -> HH.slot_ (Proxy @"article-view") unit EditArticleView.make { articleId }

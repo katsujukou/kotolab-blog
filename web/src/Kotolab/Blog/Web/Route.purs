@@ -12,6 +12,7 @@ import Routing.Duplex.Generic.Syntax ((/))
 data Route
   = Home
   | Articles ArticleId
+  | NewArticle
   | EditArticle ArticleId
 
 derive instance eqRoute :: Eq Route
@@ -24,5 +25,6 @@ route :: RD.RouteDuplex' Route
 route = RD.root $ RDG.sum
   { "Home": RDG.noArgs
   , "Articles": "articles" / RD.segment
+  , "NewArticle": "new-article" / RDG.noArgs
   , "EditArticle": "articles" / RD.segment / "edit"
   }

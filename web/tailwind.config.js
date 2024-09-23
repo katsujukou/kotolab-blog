@@ -5,7 +5,7 @@ export default {
     extend: {},
     backgroundSize: {
       '140%': '140%',
-      '60%': '60%'
+      '60%': '80%'
     },
     fontFamily: {
       yomogi: [
