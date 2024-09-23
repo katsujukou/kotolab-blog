@@ -441,11 +441,15 @@ workspace:
         dependencies:
           - affjax
           - affjax-web
+          - css
+          - fmt
           - halogen
           - halogen-helix
           - halogen-hooks
           - kotolab-blog-foreign
           - kotolab-blog-lib
+          - routing
+          - routing-duplex
         build_plan:
           - aff
           - aff-promise
@@ -454,15 +458,18 @@ workspace:
           - argonaut-core
           - arraybuffer-types
           - arrays
+          - assert
           - avar
           - bifunctors
           - catenable-lists
           - codec
           - codec-argonaut
+          - colors
           - console
           - const
           - contravariant
           - control
+          - css
           - datetime
           - distributive
           - dom-indexed
@@ -471,6 +478,7 @@ workspace:
           - enums
           - exceptions
           - exists
+          - fmt
           - foldable-traversable
           - foreign
           - foreign-object
@@ -496,6 +504,7 @@ workspace:
           - kotolab-blog-foreign
           - kotolab-blog-lib
           - lazy
+          - lcg
           - lists
           - maybe
           - media-types
@@ -510,12 +519,19 @@ workspace:
           - partial
           - prelude
           - profunctor
+          - quickcheck
+          - quickcheck-laws
+          - random
           - record
           - refs
+          - routing
+          - routing-duplex
           - safe-coerce
+          - semirings
           - st
           - strings
           - tailrec
+          - these
           - transformers
           - tuples
           - type-equality
@@ -523,6 +539,7 @@ workspace:
           - unfoldable
           - unsafe-coerce
           - unsafe-reference
+          - validation
           - variant
           - web-clipboard
           - web-dom
@@ -1301,6 +1318,17 @@ packages:
       - ordered-collections
       - type-equality
       - variant
+  colors:
+    type: registry
+    version: 7.0.1
+    integrity: sha256-udlg/y2PFsHYli8Tgz8BQGGrOjyGo0BcJj36IfgYADs=
+    dependencies:
+      - arrays
+      - integers
+      - lists
+      - numbers
+      - partial
+      - strings
   console:
     type: registry
     version: 6.1.0
@@ -1333,6 +1361,19 @@ packages:
     dependencies:
       - newtype
       - prelude
+  css:
+    type: registry
+    version: 6.0.0
+    integrity: sha256-zfSHxgiU4rSWuVxMjSKKh+s7j433wxmsr+CqI6hm9s4=
+    dependencies:
+      - colors
+      - console
+      - effect
+      - nonempty
+      - profunctor
+      - strings
+      - these
+      - transformers
   datetime:
     type: registry
     version: 6.1.0
@@ -2266,6 +2307,13 @@ packages:
       - transformers
       - tuples
       - unfoldable
+  quickcheck-laws:
+    type: registry
+    version: 7.0.0
+    integrity: sha256-rnzVTiDnymzYkvnhI8EvPwrmO8LgcTnrMTuiI172Tkc=
+    dependencies:
+      - enums
+      - quickcheck
   random:
     type: registry
     version: 6.0.0
@@ -2298,6 +2346,28 @@ packages:
     dependencies:
       - effect
       - prelude
+  routing:
+    type: registry
+    version: 11.0.0
+    integrity: sha256-h2ZehllxQlfJDYh6Rlj0VySlJwqJvY4LMkb7p8cjxLs=
+    dependencies:
+      - aff
+      - console
+      - control
+      - effect
+      - either
+      - foldable-traversable
+      - integers
+      - js-uri
+      - lists
+      - maybe
+      - numbers
+      - partial
+      - prelude
+      - semirings
+      - tuples
+      - validation
+      - web-html
   routing-duplex:
     type: registry
     version: 0.7.0
@@ -2345,6 +2415,15 @@ packages:
     integrity: sha256-a1ibQkiUcbODbLE/WAq7Ttbbh9ex+x33VCQ7GngKudU=
     dependencies:
       - unsafe-coerce
+  semirings:
+    type: registry
+    version: 7.0.0
+    integrity: sha256-2qGNMxVYns7RJxZd1uGtJbGTeVl/6Ozsz9OM5gRM61A=
+    dependencies:
+      - foldable-traversable
+      - lists
+      - newtype
+      - prelude
   spec:
     type: registry
     version: 8.0.0
@@ -2450,6 +2529,17 @@ packages:
       - partial
       - prelude
       - refs
+  these:
+    type: registry
+    version: 6.0.0
+    integrity: sha256-6poQvFzGw7Ir9mTDEbFV9N6+cUeSHe0FdzTR2ZK1o6g=
+    dependencies:
+      - arrays
+      - gen
+      - lists
+      - quickcheck
+      - quickcheck-laws
+      - tuples
   transformers:
     type: registry
     version: 6.1.0
@@ -2527,6 +2617,17 @@ packages:
       - psci-support
       - tuples
       - unsafe-coerce
+  validation:
+    type: registry
+    version: 6.0.0
+    integrity: sha256-kfFailaIW4spGxbRk4261z/RGT0Sb7Dx5f3qihy0MTw=
+    dependencies:
+      - bifunctors
+      - control
+      - either
+      - foldable-traversable
+      - newtype
+      - prelude
   variant:
     type: registry
     version: 8.0.0

@@ -3,11 +3,15 @@ package:
   dependencies:
     - affjax
     - affjax-web
+    - css
+    - fmt
     - halogen
     - halogen-helix
     - halogen-hooks
     - kotolab-blog-foreign
     - kotolab-blog-lib
+    - routing
+    - routing-duplex
   test:
     main: Test.E2E.Kotolab.Blog.Web
     dependencies:
