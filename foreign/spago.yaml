@@ -2,3 +2,8 @@ package:
   name: kotolab-blog-foreign
   dependencies:
     - aff-promise
+  test:
+    main: Test.Kotolab.Blog.Foreign
+    dependencies:
+      - spec
+      - spec-node
