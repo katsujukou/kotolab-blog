@@ -6,18 +6,6 @@ settings:
 
 importers:
 
-  .:
-    dependencies:
-      '@shikijs/markdown-it':
-        specifier: '*'
-        version: 1.18.0
-      markdown-it:
-        specifier: ^14.1.0
-        version: 14.1.0
-      shiki:
-        specifier: ^1.18.0
-        version: 1.18.0
-
   api: {}
 
   foreign:

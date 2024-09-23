@@ -5,7 +5,9 @@
     "optimize": "cd .. && purs-backend-es build",
     "pack": "vite build",
     "build": "npm run compile && npm run optimize && npm run pack",
-    "dev": "pnpm run compile && vite"
+    "dev": "pnpm run compile && vite",
+    "clean": "cd .. && rm -rf .spago output output-es web/dist",
+    "release": "pnpm clean && pnpm compile && pnpm optimize && pnpm run pack"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
