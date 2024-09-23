@@ -15,10 +15,8 @@ on:
 jobs:
   lib:
     name: Build, Test & Check lib
-    runs-on: ubuntu-latest
     uses: ./.github/workflows/_lib.yaml
     
   web:
     name: Build, Test, Check & Deploy Web 
-    runs-on: ubuntu-latest
     uses: ./.github/workflows/_web.yaml
