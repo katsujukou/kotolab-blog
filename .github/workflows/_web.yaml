@@ -3,6 +3,10 @@ name: Nix Setup
 on:
   workflow_call:
 
+permissions:
+  id-token: write # required!
+  contents: read
+  
 jobs:
   setup-nix:
     runs-on: ubuntu-latest
