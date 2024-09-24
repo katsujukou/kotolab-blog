@@ -33,6 +33,12 @@ resource "aws_lambda_function" "kotolab_blog_api" {
   publish          = true
   source_code_hash = data.archive_file.sample_function.output_base64sha256
   runtime          = "nodejs20.x"
+  timeout          = 60
+  environment {
+    variables = { 
+      "NODE_OPTIONS" = "--enable-source-maps"
+    }
+  }
 }
 
 resource "aws_lambda_function_url" "kotolab_blog_api" {
