@@ -8,7 +8,7 @@ permissions:
   contents: read
 
 jobs:
-  ci-web:
+  ci-api:
     runs-on: ubuntu-latest
     environment: "prod" # Todo: adjust for multi environments
     steps:
@@ -43,9 +43,10 @@ jobs:
       - name: Build for release
         run: pnpm install && pnpm -F "./api" release
 
-      # - name: Deploy to S3
-      #   run: |
-      #     aws s3 sync ./web/dist s3://${{ vars.S3_BUCKET_NAME }} --delete \
-      #       && aws cloudfront create-invalidation \
-      #           --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }} \
-      #           --paths "/*"
+      - name: Pack release
+        run: zip -j api/dist.zip ./api/dist/*
+
+      - name: Deploy to AWS Lambda
+        run: |
+          aws lambda update-function-code --function-name ${{ vars.BLOG_API_FUNCTION_ARN }} \
+          --zip-file fileb://api/dist.zip

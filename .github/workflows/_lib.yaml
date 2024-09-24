@@ -4,7 +4,7 @@ on:
   workflow_call:
 
 jobs:
-  setup-nix:
+  ci-lib:
     runs-on: ubuntu-latest
     steps:
       # Setup Nix envirionment
