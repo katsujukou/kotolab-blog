@@ -9,6 +9,7 @@ import Data.Either (Either(..))
 import Data.Maybe (fromMaybe)
 import Effect.Aff (Aff, attempt)
 import Effect.Class (liftEffect)
+import Effect.Class.Console as Console
 import Effect.Exception as Exn
 import Fmt as Fmt
 import HTTPurple (Method(..), badRequest, internalServerError, notFound, ok, usingCont)
@@ -71,9 +72,14 @@ handler = mkHandler
     markdownit <- liftEffect $ MarkdownIt.md
     res <- attempt $ runEffects markdownit (router' req)
     case res of
-      Left msg -> internalServerError (Exn.message msg)
+      Left msg -> do
+        Console.error $ Exn.message msg
+        Console.error $ show $ Exn.stack msg
+        internalServerError (Exn.message msg)
       Right resp -> case resp of
-        Left msg -> badRequest msg
+        Left msg -> do
+          Console.error msg
+          badRequest msg
         Right a -> pure a
 
   runEffects :: forall a. MarkdownIt -> Run ServerEffects a -> Aff (Either ErrorType a)
