@@ -1,4 +1,4 @@
-name: CI on blog-webapp
+name: CI on blog-api
 
 on:
   workflow_call:
@@ -26,13 +26,13 @@ jobs:
 
       # Run CI jobs
       - name: Build
-        run: spago build -p web
+        run: spago build -p api
 
       - name: Run tests
-        run: spago test -p web
+        run: spago test -p api
 
       - name: Check format
-        run: purs-tidy check web
+        run: purs-tidy check api
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -41,11 +41,11 @@ jobs:
           aws-region: "ap-northeast-1"
 
       - name: Build for release
-        run: pnpm install && pnpm -F "./web" release
+        run: pnpm install && pnpm -F "./api" release
 
-      - name: Deploy to S3
-        run: |
-          aws s3 sync ./web/dist s3://${{ vars.S3_BUCKET_NAME }} --delete \
-            && aws cloudfront create-invalidation \
-                --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }} \
-                --paths "/*"
+      # - name: Deploy to S3
+      #   run: |
+      #     aws s3 sync ./web/dist s3://${{ vars.S3_BUCKET_NAME }} --delete \
+      #       && aws cloudfront create-invalidation \
+      #           --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }} \
+      #           --paths "/*"

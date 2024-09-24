@@ -3,20 +3,24 @@ name: CI
 on:
   push:
     paths:
-      - '**'
-      - '!.vscode/'
-      - '!README.md'
+      - "**"
+      - "!.vscode/"
+      - "!README.md"
   pull_request:
     paths:
-      - '**'
-      - '!.vscode/'
-      - '!README.md'
+      - "**"
+      - "!.vscode/"
+      - "!README.md"
 
 jobs:
   lib:
     name: Build, Test & Check lib
     uses: ./.github/workflows/_lib.yaml
-    
+
   web:
-    name: Build, Test, Check & Deploy Web 
+    name: Build, Test, Check & Deploy Web
     uses: ./.github/workflows/_web.yaml
+
+  api:
+    name: Build, Test, Check & Deploy API
+    uses: ./.github/workflows/_api.yaml

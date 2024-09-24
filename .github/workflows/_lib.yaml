@@ -1,4 +1,4 @@
-name: Nix Setup
+name: CI on blog-lib
 
 on:
   workflow_call:
@@ -15,7 +15,7 @@ jobs:
       - uses: cachix/cachix-action@v10
         with:
           name: katsujukou-github
-          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - uses: nicknovitski/nix-develop@v1
       - run: nix develop --extra-experimental-features "nix-command flakes"
 
@@ -24,5 +24,5 @@ jobs:
         run: spago build -p kotolab-blog-lib && spago build -p kotolab-blog-foreign
       - name: Test
         run: spago test -p kotolab-blog-lib && spago test -p kotolab-blog-foreign
-      - name: Check 
+      - name: Check
         run: purs-tidy check lib foreign
