@@ -1147,7 +1147,7 @@ workspace:
   extra_packages:
     httpurple-aws-lambda:
       git: https://github.com/katsujukou/purescript-httpurple-aws-lambda.git
-      ref: main
+      ref: cb6b8b766581b99a6c378f170f63c2953f17262e
 packages:
   aff:
     type: registry
@@ -1819,7 +1819,7 @@ packages:
   httpurple-aws-lambda:
     type: git
     url: https://github.com/katsujukou/purescript-httpurple-aws-lambda.git
-    rev: 54e8f97b7949e166434c4c591aef18881655e63d
+    rev: cb6b8b766581b99a6c378f170f63c2953f17262e
     dependencies:
       - aff-promise
       - codec
