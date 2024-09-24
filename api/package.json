@@ -1,9 +1,15 @@
 {
+  "name": "kotolab-blog-api",
   "type": "module",
   "scripts": {
     "compile": "cd .. && spago build -p api",
     "optimize": "cd .. && purs-backend-es build",
-    "pack": "cd .. && purs-backend-es bundle-module --no-build -p node -y -m Kotolab.Blog.API.V1 -t api/dist/app.js",
-    "build": "npm run compile && npm run optimize && npm run pack && echo '{ \"type\": \"module\" }' > ./dist/package.json"
+    "bundle": "cd .. && purs-backend-es bundle-module --no-build -p node -y -m Kotolab.Blog.API.V1 -t api/dist/app.js",
+    "build": "pnpm run compile && pnpm run optimize && pnpm run bundle",
+    "clean": "rm -rf ../output ../output-es dist",
+    "release": "pnpm run clean && pnpm run build && echo '{ \"type\": \"module\" }' > ./dist/package.json"
+  },
+  "dependencies": {
+    "kotolab-blog-foreign": "link:../foreign"
   }
 }

@@ -1,4 +1,5 @@
 {
+  "name": "kotolab-blog-web",
   "type": "module",
   "scripts": {
     "compile": "cd .. && spago build -p web",

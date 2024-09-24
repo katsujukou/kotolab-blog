@@ -1,8 +1,13 @@
 {
+  "name": "kotolab-blog-foreign",
   "type": "module",
-  "dependencies": {
-    "@shikijs/markdown-it": "^1.18.0",
-    "markdown-it": "^14.1.0",
-    "shiki": "^1.18.0"
+  "scripts": {
+    "compile": "cd .. && spago build -p kotolab-blog-foreign",
+    "optimize": "cd .. && purs-backend-es build"
+  },
+  "peerDependencies": {
+    "@shikijs/markdown-it": "1.18.0",
+    "markdown-it": "14.1.0",
+    "shiki": "1.18.0"
   }
 }

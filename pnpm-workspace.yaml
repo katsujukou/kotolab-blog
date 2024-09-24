@@ -2,3 +2,6 @@ packages:
   - "api"
   - "foreign"
   - "web"
+
+shared-workspace-lockfile: true
+link-workspace-packages: deep

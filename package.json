@@ -1,0 +1,8 @@
+{
+	"name": "kotolab-blog",
+	"workspace": [
+		"api",
+		"foreign",
+		"web"
+	]
+}
