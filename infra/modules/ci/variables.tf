@@ -19,3 +19,7 @@ variable "webapp_s3_bucket_arn" {
 variable "webapp_cloudfront_distribution_arn" {
   type = string
 }
+
+variable "blog_api_function_arn" {
+  type = string
+}

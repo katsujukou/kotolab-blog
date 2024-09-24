@@ -57,6 +57,14 @@ resource "aws_iam_role_policy" "allow_s3_limited_access" {
         Action = [
           "cloudfront:CreateInvalidation"
         ]
+      },
+      {
+        Effect = "Allow"
+        Resource = "${var.blog_api_function_arn}"
+        Action = [
+          "lambda:UpdateFunctionCode",
+          "lambda:GetFunctionConfiguration"
+        ]
       }
     ]
   })
