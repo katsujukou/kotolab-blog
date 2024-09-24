@@ -1,6 +1,6 @@
 workspace:
   packageSet:
-    registry: 60.0.0
+    registry: 60.0.1
   extraPackages:
     httpurple-aws-lambda:
       git: https://github.com/katsujukou/purescript-httpurple-aws-lambda.git
