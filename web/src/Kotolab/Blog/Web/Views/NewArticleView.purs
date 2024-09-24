@@ -11,7 +11,6 @@ import Halogen.HTML.Properties (InputType(..))
 import Halogen.HTML.Properties as HP
 import Halogen.Hooks (useState)
 import Halogen.Hooks as Hooks
-import Type.Proxy (Proxy(..))
 import Web.UIEvent.MouseEvent (MouseEvent)
 
 make :: forall q i o m. H.Component q i o m

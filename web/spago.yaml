@@ -3,6 +3,8 @@ package:
   dependencies:
     - affjax
     - affjax-web
+    - arraybuffer
+    - codec-argonaut
     - css
     - fmt
     - halogen
@@ -12,6 +14,8 @@ package:
     - kotolab-blog-lib
     - routing
     - routing-duplex
+    - stringutils
+    - web-encoding
   test:
     main: Test.E2E.Kotolab.Blog.Web
     dependencies:

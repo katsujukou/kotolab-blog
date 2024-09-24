@@ -1,0 +1,1 @@
+export const padStart = n => ch => str => str.padStart(n, ch)

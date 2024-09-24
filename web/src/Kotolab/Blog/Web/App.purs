@@ -2,15 +2,24 @@ module Kotolab.Blog.Web.App where
 
 import Prelude
 
+import Data.Argonaut.Core (stringify)
+import Data.Codec as C
+import Data.Codec.Argonaut as CA
+import Data.Codec.Argonaut.Record as CAR
+import Data.HTTP.Method (Method(..))
 import Data.Maybe (Maybe(..))
 import Data.Tuple.Nested ((/\))
 import Effect.Class (class MonadEffect)
+import Effect.Class.Console as Console
 import Halogen (ClassName(..))
 import Halogen as H
 import Halogen.HTML as HH
 import Halogen.HTML.Properties as HP
+import Halogen.Hooks (useLifecycleEffect)
 import Halogen.Hooks as Hooks
+import Kotolab.Blog.Json as Json
 import Kotolab.Blog.Web.Asset (assetUrls, url)
+import Kotolab.Blog.Web.Capability.MonadAffjax (class MonadAffjax, sendRequest)
 import Kotolab.Blog.Web.Component.HeaderMenu as HeaderMenu
 import Kotolab.Blog.Web.Hooks.UseApp (useApp)
 import Kotolab.Blog.Web.Route as Route
@@ -21,10 +30,49 @@ import Kotolab.Blog.Web.Views.HomeView as HomeView
 import Kotolab.Blog.Web.Views.NewArticleView as NewArticleView
 import Type.Proxy (Proxy(..))
 
-make :: forall q i o m. MonadEffect m => H.Component q i o m
+codec :: CA.JsonCodec { src :: String }
+codec = CA.object "Request" $
+  CAR.record
+    { src: CA.string
+    }
+
+src :: String
+src =
+  """
+# 見出し１
+
+## 見出し２
+
+あああ
+
+### コードブロック
+
+```purescript
+module Main where
+
+import Prelude
+
+import Effect (Effect)
+import Effect.Console as Console
+
+main :: Effect Unit
+main = do
+  Console.log "こんにちは世界🌎️"
+```
+"""
+
+make :: forall q i o m. MonadEffect m => MonadAffjax m => H.Component q i o m
 make = Hooks.component \_ _ -> Hooks.do
   appApi <- useApp
 
+  useLifecycleEffect do
+    j <- sendRequest
+      POST
+      "https://blog.kotolab.net/api/v1/render-preview"
+      (Just $ Json.stringify codec { src })
+      []
+    Console.logShow $ stringify j
+    pure Nothing
   let
     ctx =
       { currentRoute: appApi.currentRoute.route

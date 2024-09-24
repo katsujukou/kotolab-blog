@@ -4,11 +4,10 @@
   "scripts": {
     "compile": "cd .. && spago build -p web",
     "optimize": "cd .. && purs-backend-es build",
-    "pack": "vite build",
-    "build": "npm run compile && npm run optimize && npm run pack",
-    "dev": "pnpm run compile && vite",
-    "clean": "cd .. && rm -rf .spago output output-es web/dist",
-    "release": "pnpm clean && pnpm compile && pnpm optimize && pnpm run pack"
+    "build": "cp src/index.js . && vite build",
+    "dev": "pnpm compile && cp src/index.dev.js index.js && vite",
+    "clean": "cd .. && rm -rf .spago output output-es web/dist web/index.js",
+    "release": "pnpm clean && pnpm compile && pnpm optimize && pnpm build"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
