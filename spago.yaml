@@ -4,4 +4,4 @@ workspace:
   extraPackages:
     httpurple-aws-lambda:
       git: https://github.com/katsujukou/purescript-httpurple-aws-lambda.git
-      ref: main
+      ref: cb6b8b766581b99a6c378f170f63c2953f17262e
