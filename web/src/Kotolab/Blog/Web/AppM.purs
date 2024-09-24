@@ -17,9 +17,10 @@ import Data.Either (Either(..))
 import Data.Foldable (foldMap)
 import Data.Int (hexadecimal)
 import Data.Int as Int
-import Data.UInt as UInt
+import Data.Maybe (maybe)
 import Data.MediaType.Common (applicationJSON)
 import Data.Traversable (for)
+import Data.UInt as UInt
 import Effect.Aff (Aff)
 import Effect.Aff.Class (class MonadAff, liftAff)
 import Effect.Class (class MonadEffect, liftEffect)
@@ -27,7 +28,7 @@ import Effect.Class.Console as Console
 import Effect.Exception (throw)
 import Halogen as H
 import Kotolab.Blog.Web.Capability.Markdown (class MonadMarkdown)
-import Kotolab.Blog.Web.Capability.MonadAffjax (class MonadAffjax)
+import Kotolab.Blog.Web.Capability.MonadAffjax (class MonadAffjax, toAffjaxRequestHeaders)
 import Kotolab.Blog.Web.Env (Env)
 import Kotolab.Blog.Web.Foreign.CryptoSubtle (digestSHA256)
 import Kotolab.Blog.Web.Foreign.String (padStart)
@@ -66,6 +67,9 @@ instance monadAffjaxAppM :: MonadAffjax AppM where
       headers = fold
         [ [ AXH.ContentType applicationJSON
           ]
+        , contentHash
+            # maybe [] \hash -> [ AXH.RequestHeader "x-amz-content-sha256" hash ]
+        , headers' # toAffjaxRequestHeaders
         ]
 
       req = AX.defaultRequest
