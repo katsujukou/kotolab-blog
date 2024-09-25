@@ -3,6 +3,7 @@ module Kotolab.Blog.Web.App where
 import Prelude
 
 import Data.Argonaut.Core (stringify)
+import Data.Argonaut.Core as AC
 import Data.Codec as C
 import Data.Codec.Argonaut as CA
 import Data.Codec.Argonaut.Record as CAR
@@ -19,7 +20,7 @@ import Halogen.Hooks (useLifecycleEffect)
 import Halogen.Hooks as Hooks
 import Kotolab.Blog.Json as Json
 import Kotolab.Blog.Web.Asset (assetUrls, url)
-import Kotolab.Blog.Web.Capability.MonadAffjax (class MonadAffjax, sendRequest)
+import Kotolab.Blog.Web.Capability.MonadAjax (class MonadAjax, sendRequest)
 import Kotolab.Blog.Web.Component.HeaderMenu as HeaderMenu
 import Kotolab.Blog.Web.Hooks.UseApp (useApp)
 import Kotolab.Blog.Web.Route as Route
@@ -43,25 +44,10 @@ src =
 
 ## 見出し２
 
-あああ
-
 ### コードブロック
+```"""
 
-```purescript
-module Main where
-
-import Prelude
-
-import Effect (Effect)
-import Effect.Console as Console
-
-main :: Effect Unit
-main = do
-  Console.log "こんにちは世界🌎️"
-```
-"""
-
-make :: forall q i o m. MonadEffect m => MonadAffjax m => H.Component q i o m
+make :: forall q i o m. MonadEffect m => MonadAjax AC.Json m => H.Component q i o m
 make = Hooks.component \_ _ -> Hooks.do
   appApi <- useApp
 
