@@ -448,6 +448,7 @@ workspace:
           - arraybuffer
           - codec-argonaut
           - css
+          - fetch
           - fmt
           - halogen
           - halogen-helix
@@ -487,6 +488,7 @@ workspace:
           - enums
           - exceptions
           - exists
+          - fetch
           - float32
           - fmt
           - foldable-traversable
@@ -509,7 +511,9 @@ workspace:
           - integers
           - invariant
           - js-date
+          - js-fetch
           - js-promise
+          - js-promise-aff
           - js-uri
           - kotolab-blog-foreign
           - kotolab-blog-lib
@@ -562,6 +566,7 @@ workspace:
           - web-html
           - web-pointerevents
           - web-storage
+          - web-streams
           - web-touchevents
           - web-uievents
           - web-xhr
@@ -644,7 +649,7 @@ workspace:
           - unsafe-coerce
   package_set:
     address:
-      registry: 60.0.1
+      registry: 60.1.0
     compiler: ">=0.15.15 <0.16.0"
     content:
       abc-parser: 2.0.1
@@ -941,6 +946,7 @@ workspace:
       ocarina: 1.5.4
       oooooooooorrrrrrrmm-lib: 0.0.1
       open-folds: 6.4.0
+      open-foreign-generic: 11.0.3
       open-memoize: 6.2.0
       open-mkdirp-aff: 1.2.0
       open-pairing: 6.2.0
@@ -1152,7 +1158,7 @@ workspace:
   extra_packages:
     httpurple-aws-lambda:
       git: https://github.com/katsujukou/purescript-httpurple-aws-lambda.git
-      ref: f01a36edb56e3df8bb8d61e4976162d641e79d7c
+      ref: fa23d3bdef3405dadee0cb8ef8e3440be0debcc1
 packages:
   aff:
     type: registry
@@ -1504,6 +1510,30 @@ packages:
     integrity: sha256-4wxViTbyOoyKJ/WaRGI6+hZmgMKI5Miv16lSwefiLSM=
     dependencies:
       - enums
+  fetch:
+    type: registry
+    version: 4.1.0
+    integrity: sha256-zCwBUkRL9n6nUhK1+7UqqsuxswPFATsZfGSBOA3NYYY=
+    dependencies:
+      - aff
+      - arraybuffer-types
+      - bifunctors
+      - effect
+      - either
+      - foreign
+      - http-methods
+      - js-fetch
+      - js-promise
+      - js-promise-aff
+      - maybe
+      - newtype
+      - ordered-collections
+      - prelude
+      - record
+      - strings
+      - typelevel-prelude
+      - web-file
+      - web-streams
   float32:
     type: registry
     version: 2.0.0
@@ -1824,7 +1854,7 @@ packages:
   httpurple-aws-lambda:
     type: git
     url: https://github.com/katsujukou/purescript-httpurple-aws-lambda.git
-    rev: f01a36edb56e3df8bb8d61e4976162d641e79d7c
+    rev: fa23d3bdef3405dadee0cb8ef8e3440be0debcc1
     dependencies:
       - aff-promise
       - codec
@@ -1868,6 +1898,29 @@ packages:
       - foreign
       - integers
       - now
+  js-fetch:
+    type: registry
+    version: 0.2.1
+    integrity: sha256-zQaVi9wFWku1SsWmdR11kRpOb+wxkNWR49cn928ucjw=
+    dependencies:
+      - arraybuffer-types
+      - arrays
+      - effect
+      - foldable-traversable
+      - foreign
+      - foreign-object
+      - functions
+      - http-methods
+      - js-promise
+      - maybe
+      - newtype
+      - prelude
+      - record
+      - tuples
+      - typelevel-prelude
+      - unfoldable
+      - web-file
+      - web-streams
   js-promise:
     type: registry
     version: 1.0.0
@@ -1879,6 +1932,14 @@ packages:
       - functions
       - maybe
       - prelude
+  js-promise-aff:
+    type: registry
+    version: 1.0.0
+    integrity: sha256-s9kml9Ei74hKlMMg41yyZp4GkbmYUwaH+gBWWrdhwec=
+    dependencies:
+      - aff
+      - foreign
+      - js-promise
   js-uri:
     type: registry
     version: 3.1.0
@@ -2782,6 +2843,18 @@ packages:
     dependencies:
       - nullable
       - web-events
+  web-streams:
+    type: registry
+    version: 4.0.0
+    integrity: sha256-02HgXIk6R+pU9fWOX42krukAI1QkCbLKcCv3b4Jq6WI=
+    dependencies:
+      - arraybuffer-types
+      - effect
+      - exceptions
+      - js-promise
+      - nullable
+      - prelude
+      - tuples
   web-touchevents:
     type: registry
     version: 4.0.0

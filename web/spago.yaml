@@ -1,11 +1,13 @@
 package:
   name: web
   dependencies:
+    - aff-promise
     - affjax
     - affjax-web
     - arraybuffer
     - codec-argonaut
     - css
+    - fetch
     - fmt
     - halogen
     - halogen-helix
