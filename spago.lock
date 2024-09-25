@@ -101,7 +101,6 @@ workspace:
           - type-equality
           - typelevel-prelude
           - unfoldable
-          - unordered-collections
           - unsafe-coerce
           - untagged-union
           - variant
@@ -314,7 +313,6 @@ workspace:
       core:
         dependencies:
           - codec-argonaut
-          - unordered-collections
         build_plan:
           - argonaut-core
           - arrays
@@ -358,7 +356,6 @@ workspace:
           - type-equality
           - typelevel-prelude
           - unfoldable
-          - unordered-collections
           - unsafe-coerce
           - variant
       test:
@@ -553,7 +550,6 @@ workspace:
           - typelevel-prelude
           - uint
           - unfoldable
-          - unordered-collections
           - unsafe-coerce
           - unsafe-reference
           - validation
@@ -1158,7 +1154,7 @@ workspace:
   extra_packages:
     httpurple-aws-lambda:
       git: https://github.com/katsujukou/purescript-httpurple-aws-lambda.git
-      ref: fa23d3bdef3405dadee0cb8ef8e3440be0debcc1
+      ref: main
 packages:
   aff:
     type: registry
@@ -1854,7 +1850,7 @@ packages:
   httpurple-aws-lambda:
     type: git
     url: https://github.com/katsujukou/purescript-httpurple-aws-lambda.git
-    rev: fa23d3bdef3405dadee0cb8ef8e3440be0debcc1
+    rev: bfac15b44eb62473f6508bc0abcf6344b1e10886
     dependencies:
       - aff-promise
       - codec
@@ -2712,21 +2708,6 @@ packages:
       - partial
       - prelude
       - tuples
-  unordered-collections:
-    type: registry
-    version: 3.1.0
-    integrity: sha256-H2eQR+ylI+cljz4XzWfEbdF7ee+pnw2IZCeq69AuJ+Q=
-    dependencies:
-      - arrays
-      - enums
-      - functions
-      - integers
-      - lists
-      - prelude
-      - record
-      - tuples
-      - typelevel-prelude
-      - unfoldable
   unsafe-coerce:
     type: registry
     version: 6.0.0
