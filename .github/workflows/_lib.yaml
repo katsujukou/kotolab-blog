@@ -20,6 +20,8 @@ jobs:
       - run: nix develop --extra-experimental-features "nix-command flakes"
 
       # Run CI jobs
+      - name: Install 
+        run: spago install -p kotolba-blog-lib
       - name: Build
         run: spago build -p kotolab-blog-lib && spago build -p kotolab-blog-foreign
       - name: Test
