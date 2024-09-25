@@ -1850,7 +1850,7 @@ packages:
   httpurple-aws-lambda:
     type: git
     url: https://github.com/katsujukou/purescript-httpurple-aws-lambda.git
-    rev: b718a02f83999b3844eaed52d28da9ca0cc715eb
+    rev: f0023b8ca9c8df1409a385929913b0a8f8a3a213
     dependencies:
       - aff-promise
       - codec

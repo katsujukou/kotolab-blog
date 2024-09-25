@@ -14,7 +14,7 @@ import Effect.Exception as Exn
 import Fmt as Fmt
 import HTTPurple (Method(..), badRequest, internalServerError, notFound, ok, usingCont)
 import HTTPurple as HTTPurple
-import HTTPurple.AWS.Lambda (APIGatewayV2, LambdaExtRequest, LambdaHandler, lambdaRouter, mkHandlerWithStreaming)
+import HTTPurple.AWS.Lambda (APIGatewayV2, LambdaExtRequest, LambdaHandler, lambdaRouter, mkHandler)
 import Kotolab.Blog.API.Effect.Markdown (MARKDOWN)
 import Kotolab.Blog.API.Effect.Markdown as Markdown
 import Kotolab.Blog.API.V1.Endpoint (Route)
@@ -58,7 +58,7 @@ encoder :: forall a. C.JsonCodec a -> HTTPurple.JsonEncoder a
 encoder codec = HTTPurple.JsonEncoder (Json.stringify codec)
 
 handler :: LambdaHandler APIGatewayV2
-handler = mkHandlerWithStreaming
+handler = mkHandler
   { route: Endpoint.route
   , router: runApp router
   }
