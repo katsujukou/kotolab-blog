@@ -25,6 +25,9 @@ jobs:
       - run: nix develop --extra-experimental-features "nix-command flakes"
 
       # Run CI jobs
+      - name: Install
+        run: spago install && pnpm -F './api' install
+
       - name: Build
         run: spago build -p api
 

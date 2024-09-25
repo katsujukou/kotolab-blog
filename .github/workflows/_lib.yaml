@@ -21,7 +21,7 @@ jobs:
 
       # Run CI jobs
       - name: Install 
-        run: spago install -p kotolba-blog-lib
+        run: spago install 
       - name: Build
         run: spago build -p kotolab-blog-lib && spago build -p kotolab-blog-foreign
       - name: Test

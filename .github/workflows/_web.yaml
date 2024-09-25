@@ -26,7 +26,7 @@ jobs:
 
       # Run CI jobs
       - name: Install
-        run: spago install -p web && pnpm -F './web' install
+        run: spago install && pnpm -F './web' install
 
       - name: Build
         run: spago build -p web
