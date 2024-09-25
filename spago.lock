@@ -442,6 +442,7 @@ workspace:
       path: web
       core:
         dependencies:
+          - aff-promise
           - affjax
           - affjax-web
           - arraybuffer
