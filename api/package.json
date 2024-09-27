@@ -8,7 +8,7 @@
     "build": "pnpm run compile && pnpm run optimize && pnpm run bundle",
     "clean": "rm -rf ../output ../output-es dist",
     "release": "pnpm run clean && pnpm run build && echo '{ \"type\": \"module\" }' > ./dist/package.json",
-    "dev": "pnpm run compile && sam local start-api"
+    "dev": "pnpm run compile && pnpm optimize && pnpm run bundle && node ./serve.js"
   },
   "dependencies": {
     "kotolab-blog-foreign": "link:../foreign"

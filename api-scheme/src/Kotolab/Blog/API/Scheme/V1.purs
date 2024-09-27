@@ -1,4 +1,4 @@
-module Kotolab.Blog.API.V1.Endpoint where
+module Kotolab.Blog.API.Scheme.V1 where
 
 import Prelude hiding ((/))
 
@@ -23,4 +23,3 @@ route = root $ prefix "api" $ prefix "v1" $ sum
   { "Greet": "greet" ? { name: optional <<< string }
   , "RenderPreview": "render-preview" / noArgs
   }
-

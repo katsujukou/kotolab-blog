@@ -1,0 +1,5 @@
+package:
+  name: kotolab-blog-api-scheme
+  dependencies:
+    - prelude
+    - routing-duplex

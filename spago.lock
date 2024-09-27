@@ -9,6 +9,7 @@ workspace:
           - httpurple
           - httpurple-aws-lambda
           - json
+          - kotolab-blog-api-scheme
           - kotolab-blog-foreign
           - kotolab-blog-lib
           - routing-duplex
@@ -54,6 +55,7 @@ workspace:
           - js-uri
           - json
           - justifill
+          - kotolab-blog-api-scheme
           - kotolab-blog-foreign
           - kotolab-blog-lib
           - lazy
@@ -181,6 +183,62 @@ workspace:
           - typelevel-prelude
           - unfoldable
           - unsafe-coerce
+    kotolab-blog-api-scheme:
+      path: api-scheme
+      core:
+        dependencies:
+          - prelude
+          - routing-duplex
+        build_plan:
+          - arrays
+          - assert
+          - bifunctors
+          - console
+          - const
+          - contravariant
+          - control
+          - distributive
+          - effect
+          - either
+          - enums
+          - exceptions
+          - exists
+          - foldable-traversable
+          - functions
+          - functors
+          - gen
+          - identity
+          - integers
+          - invariant
+          - js-uri
+          - lazy
+          - lcg
+          - lists
+          - maybe
+          - newtype
+          - nonempty
+          - numbers
+          - orders
+          - partial
+          - prelude
+          - profunctor
+          - quickcheck
+          - random
+          - record
+          - refs
+          - routing-duplex
+          - safe-coerce
+          - st
+          - strings
+          - tailrec
+          - transformers
+          - tuples
+          - type-equality
+          - unfoldable
+          - unsafe-coerce
+      test:
+        dependencies: []
+        build_plan: []
     kotolab-blog-foreign:
       path: foreign
       core:
@@ -450,6 +508,7 @@ workspace:
           - halogen
           - halogen-helix
           - halogen-hooks
+          - kotolab-blog-api-scheme
           - kotolab-blog-foreign
           - kotolab-blog-lib
           - routing
@@ -512,6 +571,7 @@ workspace:
           - js-promise
           - js-promise-aff
           - js-uri
+          - kotolab-blog-api-scheme
           - kotolab-blog-foreign
           - kotolab-blog-lib
           - lazy

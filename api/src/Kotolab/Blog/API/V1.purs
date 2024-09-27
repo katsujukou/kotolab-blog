@@ -17,8 +17,7 @@ import HTTPurple as HTTPurple
 import HTTPurple.AWS.Lambda (APIGatewayV2, LambdaExtRequest, LambdaHandler, lambdaRouter, mkHandler)
 import Kotolab.Blog.API.Effect.Markdown (MARKDOWN)
 import Kotolab.Blog.API.Effect.Markdown as Markdown
-import Kotolab.Blog.API.V1.Endpoint (Route)
-import Kotolab.Blog.API.V1.Endpoint as Endpoint
+import Kotolab.Blog.API.Scheme.V1 as V1
 import Kotolab.Blog.API.V1.RenderPreview as RenderPreview
 import Kotolab.Blog.Foreign.MarkdownIt (MarkdownIt)
 import Kotolab.Blog.Foreign.MarkdownIt as MarkdownIt
@@ -33,14 +32,14 @@ type ServerEffects = (MARKDOWN + EXCEPT ErrorType + AFF + EFFECT ())
 
 router
   :: forall ext
-   . LambdaExtRequest APIGatewayV2 Route ext
+   . LambdaExtRequest APIGatewayV2 V1.Route ext
   -> Run ServerEffects HTTPurple.Response
 router = lambdaRouter \{ method, route, body } -> usingCont
   case method, route of
-    Get, Endpoint.Greet { name } -> do
+    Get, V1.Greet { name } -> do
       ok $ Fmt.fmt @"Hello, {name}!" { name: fromMaybe "World" name }
 
-    Post, Endpoint.RenderPreview -> do
+    Post, V1.RenderPreview -> do
       { src } <- HTTPurple.fromJson (decoder RenderPreview.input) body
 
       rendered <- lift do
@@ -59,7 +58,7 @@ encoder codec = HTTPurple.JsonEncoder (Json.stringify codec)
 
 handler :: LambdaHandler APIGatewayV2
 handler = mkHandler
-  { route: Endpoint.route
+  { route: V1.route
   , router: runApp router
   }
   where

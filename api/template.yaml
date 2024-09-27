@@ -18,6 +18,7 @@ Resources:
         AllowHeaders:
           - Content-Type
           - Authorization
+          - X-Amz-Content-Sha256
         MaxAge: 600
         AllowCredentials: false
 
@@ -29,6 +30,9 @@ Resources:
       CodeUri: ./dist
       MemorySize: 128
       Timeout: 100
+      Environment:
+        Variables:
+          NODE_OPTIONS: --enable-source-maps
       Events:
         CatchAllRoute:
           Type: HttpApi
