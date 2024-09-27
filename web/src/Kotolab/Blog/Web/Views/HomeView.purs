@@ -18,6 +18,6 @@ make = Hooks.component \_ _ -> Hooks.do
   where
   render ctx = do
     HH.div [ HP.class_ $ ClassName "max-w-[780px] mx-auto p-5" ]
-      [ HH.div [ HP.class_ $ ClassName "text-center mb-9" ]
+      [ HH.div [ HP.class_ $ ClassName "block whitespace-pre overflow-x-scroll" ]
           []
       ]

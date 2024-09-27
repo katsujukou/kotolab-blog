@@ -2,15 +2,12 @@ module Kotolab.Blog.Web.App where
 
 import Prelude
 
-import Data.Argonaut.Core (stringify)
-import Data.Argonaut.Core as AC
-import Data.Codec as C
+import Control.Monad.Reader (class MonadAsk)
 import Data.Codec.Argonaut as CA
 import Data.Codec.Argonaut.Record as CAR
 import Data.HTTP.Method (Method(..))
 import Data.Maybe (Maybe(..))
 import Data.Tuple.Nested ((/\))
-import Effect.Class (class MonadEffect)
 import Effect.Class.Console as Console
 import Halogen (ClassName(..))
 import Halogen as H
@@ -18,10 +15,13 @@ import Halogen.HTML as HH
 import Halogen.HTML.Properties as HP
 import Halogen.Hooks (useLifecycleEffect)
 import Halogen.Hooks as Hooks
+import Kotolab.Blog.API.Scheme.V1 as SchemeV1
 import Kotolab.Blog.Json as Json
+import Kotolab.Blog.Web.API (sendApiRequest)
 import Kotolab.Blog.Web.Asset (assetUrls, url)
-import Kotolab.Blog.Web.Capability.MonadAjax (class MonadAjax, sendRequest)
+import Kotolab.Blog.Web.Capability.MonadAjax (class MonadAjax)
 import Kotolab.Blog.Web.Component.HeaderMenu as HeaderMenu
+import Kotolab.Blog.Web.Env (Env)
 import Kotolab.Blog.Web.Hooks.UseApp (useApp)
 import Kotolab.Blog.Web.Route as Route
 import Kotolab.Blog.Web.Style (inlineStyle)
@@ -45,19 +45,43 @@ src =
 ## 見出し２
 
 ### コードブロック
+```ocaml
+module Mylib = struct 
+  let greet name = "こんにちは" ^ name ^ "🐪"
+end 
+
+let () = 
+  print_endline @@ Mylib.greet "世界"
+```
+OCamlって、いいなあ〜和風総本家
+
+これはPureScriptのコードです
+```purescript
+module Main where
+
+import Effect (Effect)
+import Effect.Console as Console
+
+greet :: String -> String
+greet name = "こんにちは" <> name <> "🌎️"
+
+main :: Effect Unit
+main = do
+  Console.log $ greet "世界"
 ```"""
 
-make :: forall q i o m. MonadEffect m => MonadAjax AC.Json m => H.Component q i o m
+make
+  :: forall q i o m
+   . MonadAsk Env m
+  => MonadAjax m
+  => H.Component q i o m
 make = Hooks.component \_ _ -> Hooks.do
   appApi <- useApp
 
   useLifecycleEffect do
-    j <- sendRequest
-      POST
-      "https://blog.kotolab.net/api/v1/render-preview"
-      (Just $ Json.stringify codec { src })
-      []
-    Console.logShow $ stringify j
+    j <- sendApiRequest { encoder: Just (Json.stringify codec), decoder: pure } POST SchemeV1.RenderPreview (Just { src })
+
+    Console.logShow $ j
     pure Nothing
   let
     ctx =
