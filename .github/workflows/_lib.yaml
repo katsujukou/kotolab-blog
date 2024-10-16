@@ -25,7 +25,7 @@ jobs:
       - name: Build
         run: |
           spago build -p kotolab-blog-lib \
-            && spago build -p kotolab-blog-foreign
+            && spago build -p kotolab-blog-foreign \
             && spago build -p kotolab-blog-api-scheme
 
       - name: Test
